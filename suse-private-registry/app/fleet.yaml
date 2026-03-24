@@ -1,0 +1,25 @@
+# suse-private-registry/fleet.yaml
+name: suse-private-registry
+targetNamespace: spr
+
+helm:
+  # Reference the SUSE OCI Registry
+  chart: oci://registry.suse.com/private-registry/private-registry-helm
+  # Note: Use a specific version for production stability
+  version: 1.1.0 
+  
+  # Reference the secret if you created it for Helm chart access
+  # helmSecretName: suse-registry-chart-auth 
+
+  values:
+    # Use the secret created in Step 1 for pulling the Harbor images
+    imagePullSecrets:
+      - name: docker-registry
+    # Configure your ingress/domain
+    expose:
+      type: ingress
+      tls:
+        enabled: true
+      ingress:
+        hosts:
+          core: registry.support.rancher.space
