@@ -6,7 +6,9 @@ helm:
   # Reference the SUSE OCI Registry
   chart: oci://registry.suse.com/private-registry/private-registry-helm
   # Note: Use a specific version for production stability
-  version: 1.1.0 
+  version: 1.1.0
+  auth:
+      secretName: suse-registry-creds
   
   # Reference the secret if you created it for Helm chart access
   # helmSecretName: suse-registry-chart-auth 
