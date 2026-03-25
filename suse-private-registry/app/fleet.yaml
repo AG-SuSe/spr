@@ -1,23 +1,45 @@
-# suse-private-registry/fleet.yaml
 kind: Bundle
 metadata:
-  name: suse-private-registry
+  name: spr-app
 spec:
+  targetNamespace: spr
   helm:
-    # Split the OCI URL into repo and chart name for better compatibility
     repo: oci://registry.suse.com/private-registry
     chart: private-registry-helm
     version: 1.1.0
     auth:
       secretName: suse-registry
+    # Important: some versions require the release name to be set
+    releaseName: spr
+
   values:
-    # This is for pulling the IMAGES, not the chart
-    imagePullSecrets:
-      - name: suse-registry
+    # 1. REQUIRED: The URL where your registry will be accessed
+    externalURL: https://registry.support.rancher.space
+
+    # 2. REQUIRED: Admin Credentials
+    # Replace these with your desired passwords
+    harborAdminPassword: "Admin@123"
+    database:
+      internal:
+        password: "Db@#123"
+    redis:
+      internal:
+        password: "redis@#123"
+
+    # 3. REQUIRED: Exposure Strategy (Matching your URL)
     expose:
       type: ingress
       tls:
         enabled: true
+        # If you have a custom cert secret, put it here, 
+        # otherwise it uses the default ingress controller cert
+        secretName: "" 
       ingress:
         hosts:
           core: registry.support.rancher.space
+
+    # 4. STORAGE: If your cluster doesn't have a default StorageClass,
+    # you must specify one or the pods will stay in 'Pending' forever.
+    persistence:
+      enabled: true
+      # storageClass: "longhorn" # Uncomment and set if you know your storage class name
