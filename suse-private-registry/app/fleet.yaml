@@ -1,12 +1,9 @@
 defaultNamespace: spr
 helm:
   releaseName: spr-suse-private-registry-app
-  # For some Fleet versions, we put the full OCI path in the 'chart' field
   chart: oci://registry.suse.com/private-registry/private-registry-helm
   version: 1.1.0
-  values:
-    externalURL: https://registry.support.rancher.space
-    harborAdminPassword: AdminPassword123
+  # This MUST be indented exactly like this under 'helm'
   auth:
     secretName: suse-registry-creds
   values:
