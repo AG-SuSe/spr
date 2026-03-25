@@ -3,7 +3,6 @@ kind: Bundle
 metadata:
   name: suse-private-registry
 spec:
-  defaultNamespace: spr
   helm:
     # Split the OCI URL into repo and chart name for better compatibility
     repo: oci://registry.suse.com/private-registry
