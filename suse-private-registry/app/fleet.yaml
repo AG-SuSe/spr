@@ -11,7 +11,6 @@ spec:
     version: 1.1.0
     auth:
       secretName: suse-registry-creds
-  
   values:
     # This is for pulling the IMAGES, not the chart
     imagePullSecrets:
