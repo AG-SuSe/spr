@@ -8,7 +8,7 @@ helm:
     externalURL: https://registry.support.rancher.space
     harborAdminPassword: AdminPassword123
   auth:
-    secretName: suse-registry-secret
+    secretName: suse-registry-creds
   values:
     externalURL: https://registry.support.rancher.space
     harborAdminPassword: AdminPassword123
