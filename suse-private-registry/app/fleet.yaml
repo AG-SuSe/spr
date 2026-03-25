@@ -1,9 +1,8 @@
 defaultNamespace: spr
 helm:
   releaseName: spr-suse-private-registry-app
-  # Split the repo and the chart name
-  repo: oci://registry.suse.com/private-registry
-  chart: private-registry-helm
+  # Use the full URL here; do NOT use the 'repo' field for OCI
+  chart: oci://registry.suse.com/private-registry/private-registry-helm
   version: 1.1.0
   auth:
     secretName: suse-registry-creds
