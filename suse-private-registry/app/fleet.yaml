@@ -2,15 +2,14 @@ kind: Bundle
 metadata:
   name: spr-app
 spec:
-   targetNamespace: spr
-   helm:
-     repo: oci://registry.suse.com/private-registry
-     chart: private-registry-helm
-     version: 1.1.0
-     auth:
-       secretName: suse-registry
-     releaseName: spr
-  # MOVE 'values' TO THE LEFT - It must be a direct child of 'spec'
+  targetNamespace: spr
+  helm:
+    repo: oci://registry.suse.com/private-registry
+    chart: private-registry-helm
+    version: 1.1.0
+    auth:
+      secretName: suse-registry
+    releaseName: spr
   values:
     externalURL: https://registry.support.rancher.space
     harborAdminPassword: "AdminPassword123"
