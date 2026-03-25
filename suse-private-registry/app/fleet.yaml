@@ -1,6 +1,6 @@
 defaultNamespace: spr
 helm:
-  releaseName: spr-suse-private-registry-app
+  releaseName: spr-suse-private-registry-app-v2
   chart: oci://registry.suse.com/private-registry/private-registry-helm
   version: 1.1.0
   # This MUST be indented exactly like this under 'helm'
