@@ -2,34 +2,24 @@ kind: Bundle
 metadata:
   name: spr-app
 spec:
-  # This ensures the release is tracked in the 'spr' namespace
-  targetNamespace: spr
-  helm:
-    repo: oci://registry.suse.com/private-registry
-    chart: private-registry-helm
-    version: 1.1.0
-    auth:
-      secretName: suse-registry
-    # Adding this helps Fleet identify the release clearly
-    releaseName: spr
-
-  # START OF VALUES - Ensure 'values:' is at this indentation level
+   targetNamespace: spr
+   helm:
+     repo: oci://registry.suse.com/private-registry
+     chart: private-registry-helm
+     version: 1.1.0
+     auth:
+       secretName: suse-registry
+     releaseName: spr
+  # MOVE 'values' TO THE LEFT - It must be a direct child of 'spec'
   values:
-    # MANDATORY: The chart will not render ANY pods without this URL
     externalURL: https://registry.support.rancher.space
-
-    # MANDATORY: Passwords must be strings
     harborAdminPassword: "AdminPassword123"
-    
-    # DATABASE & REDIS: These triggers the internal DB/Redis pods
     database:
       internal:
         password: "DefaultPassword123"
     redis:
       internal:
         password: "DefaultPassword123"
-
-    # EXPOSE: This triggers the Ingress and Service resources
     expose:
       type: ingress
       tls:
@@ -37,7 +27,5 @@ spec:
       ingress:
         hosts:
           core: registry.support.rancher.space
-
-    # PERSISTENCE: Harbor requires disks to start
     persistence:
       enabled: true
