@@ -1,14 +1,16 @@
 defaultNamespace: spr
 helm:
   releaseName: spr-suse-private-registry-app
-  # Use the full OCI URL here
   chart: oci://registry.suse.com/private-registry/private-registry-helm
   version: 1.1.0
+  # Note: Since you've mapped the secret at the GitRepo level (helmSecretName),
+  # this auth block is technically redundant but fine to keep.
   auth:
     secretName: suse-registry-creds
   values:
-  values:
-  imagePullSecrets:
-    - name: suse-registry-creds
+    # This ensures the pods can pull their images from registry.suse.com
+    global:
+      imagePullSecrets:
+        - name: suse-registry-creds
     externalURL: https://registry.support.rancher.space
     harborAdminPassword: AdminPassword123
