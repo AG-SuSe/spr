@@ -1,9 +1,10 @@
 defaultNamespace: spr
 helm:
-  releaseName: spr-suse-private-registry-app
-  # Use the full URL here; do NOT use the 'repo' field for OCI
+  releaseName: spr-suse-private-registry
+  # The full OCI path is required here for the downloader to trigger
   chart: oci://registry.suse.com/private-registry/private-registry-helm
   version: 1.1.0
+  # Fleet will look for this secret in the 'fleet-default' namespace
   auth:
     secretName: suse-registry-creds
   values:
