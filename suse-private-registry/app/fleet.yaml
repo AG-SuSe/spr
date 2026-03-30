@@ -11,6 +11,6 @@ helm:
     # This ensures the pods can pull their images from registry.suse.com
     global:
       imagePullSecrets:
-        - name: suse-registry-creds
+        - name: suse-registry
     externalURL: https://registry.support.rancher.space
     harborAdminPassword: AdminPassword123
