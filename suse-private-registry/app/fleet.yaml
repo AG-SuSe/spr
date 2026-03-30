@@ -9,6 +9,13 @@ helm:
     secretName: suse-registry-creds
   values:
     # This ensures the pods can pull their images from registry.suse.com
+    expose:
+      type: ingress
+      ingress:
+        hosts:
+          core: suseprivateregistry.support.rancher.space
+        # Enable TLS if you want Harbor to generate a self-signed cert for this domain
+        tls: true
     global:
       imagePullSecrets:
         - name: suse-registry
