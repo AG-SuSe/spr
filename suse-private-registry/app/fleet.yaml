@@ -20,4 +20,4 @@ helm:
       imagePullSecrets:
         - name: suse-registry
     externalURL: https://suseprivateregistry.support.rancher.space
-    harborAdminPassword: AdminPassword123
+    harborAdminPassword: harbor-admin-secret
