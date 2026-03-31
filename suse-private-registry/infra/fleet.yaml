@@ -1,0 +1,8 @@
+defaultNamespace: spr
+# This creates the docker-registry secret using Fleet's internal logic
+volumes:
+  - name: suse-registry-node
+    secret:
+      type: kubernetes.io/dockerconfigjson
+      # Fleet can pull these from a "Secret" defined in the Manager
+      secretName: suse-registry-manager
