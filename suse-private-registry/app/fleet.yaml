@@ -6,7 +6,7 @@ helm:
   # Note: Since you've mapped the secret at the GitRepo level (helmSecretName),
   # this auth block is technically redundant but fine to keep.
   auth:
-    secretName: suse-registry-creds
+    secretName: suse-registry
   values:
     # This ensures the pods can pull their images from registry.suse.com
     expose:
@@ -20,4 +20,4 @@ helm:
       imagePullSecrets:
         - name: suse-registry
     externalURL: https://suseprivateregistry.support.rancher.space
-    harborAdminPassword: harbor-admin-secret
+    harborAdminPassword: Admin@123
